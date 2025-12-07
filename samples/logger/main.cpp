@@ -241,15 +241,13 @@ int main(int argc, const char *argv[]) {
   }
   const std::string path = argv[1];
 
-  const char *point_cloud_path = std::getenv("POINT_CLOUD_CSV_PATH");
-  const std::string default_point_cloud_path = "point_cloud.csv";
-  if (point_cloud_path == nullptr) {
-    point_cloud_path = default_point_cloud_path.c_str();
+  std::string point_cloud_path = "point_cloud.csv";
+  if (const char* env_path = std::getenv("POINT_CLOUD_CSV_PATH")) {
+    point_cloud_path = env_path;
   }
-  const char *imu_data_path = std::getenv("IMU_DATA_CSV_PATH");
-  const std::string default_imu_data_path = "imu_data.csv";
-  if (imu_data_path == nullptr) {
-    imu_data_path = default_imu_data_path.c_str();
+  std::string imu_data_path = "imu_data.csv";
+  if (const char* env_path = std::getenv("IMU_DATA_CSV_PATH")) {
+    imu_data_path = env_path;
   }
 
   g_point_csv.open(point_cloud_path, std::ios::out | std::ios::trunc);
