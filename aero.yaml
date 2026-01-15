@@ -1,0 +1,5 @@
+start: #python3 main.py & echo $! > main.pid
+stop: #kill $(cat main.pid)
+update: git pull
+publish: git push
+remote: #Shouldn't really be ran alone
