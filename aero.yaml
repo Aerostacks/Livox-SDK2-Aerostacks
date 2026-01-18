@@ -37,3 +37,6 @@ commands:
         remote: true
       - run: "@start"
         remote: true
+  setup:
+    help: Setup local project
+    steps: []
