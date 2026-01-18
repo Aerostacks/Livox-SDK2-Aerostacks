@@ -1,5 +1,39 @@
-start: #python3 main.py & echo $! > main.pid
-stop: #kill $(cat main.pid)
-update: git pull
-publish: git push
-remote: #Shouldn't really be ran alone
+remote: # Shouldn't really be ran alone
+
+commands:
+  start:
+    help: Start local project
+    aliases: [up]
+    steps: []
+      # - run: python3 main.py & echo $! > main.pid
+  
+  stop:
+    help: Stop local project
+    aliases: [down]
+    steps: []
+      # - run: kill $(cat main.pid)
+  
+  update:
+    help: Update local project
+    aliases: [u]
+    steps:
+      - run: git checkout {branch} && git pull
+  
+  build:
+    help: Publish local project to remote registry
+    aliases: [b]
+    steps:
+      - run: git push
+  
+  deploy:
+    help: Publish and deploy to remote server
+    aliases: [d]
+    steps:
+      - run: "@build"
+      - run: "@stop"
+        remote: true
+        ignore_errors: true
+      - run: "@update"
+        remote: true
+      - run: "@start"
+        remote: true
