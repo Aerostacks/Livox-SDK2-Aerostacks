@@ -31,7 +31,7 @@
 #include <unistd.h>
 #endif
 
-
+#include <chrono>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,7 +58,11 @@ namespace {
 uint64_t ExtractTimestamp(const uint8_t timestamp[8]) {
   uint64_t value = 0;
   memcpy(&value, timestamp, sizeof(value));
-  return value;
+	using namespace std::chrono;
+	long ms = duration_cast< milliseconds >(
+    	system_clock::now().time_since_epoch()
+	).count();
+  return ms;
 }
 
 const char* DescribePointType(uint8_t data_type) {
