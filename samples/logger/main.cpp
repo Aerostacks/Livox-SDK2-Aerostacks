@@ -59,9 +59,7 @@ uint64_t ExtractTimestamp(const uint8_t timestamp[8]) {
   uint64_t value = 0;
   memcpy(&value, timestamp, sizeof(value));
 	using namespace std::chrono;
-	long ms = duration_cast< milliseconds >(
-    	system_clock::now().time_since_epoch()
-	).count();
+	long ms =std::chrono::steady_clock::now().time_since_epoch().count()/1000;
   return ms;
 }
 
