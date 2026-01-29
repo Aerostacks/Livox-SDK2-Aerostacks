@@ -180,7 +180,7 @@ void PointCloudCallback(uint32_t handle, const uint8_t dev_type, LivoxLidarEther
   }
   (void)dev_type;
   (void)client_data;
-  PrintPointCloudData(handle, data);
+  // PrintPointCloudData(handle, data);
 }
 
 void ImuDataCallback(uint32_t handle, const uint8_t dev_type,  LivoxLidarEthernetPacket* data, void* client_data) {
@@ -189,7 +189,7 @@ void ImuDataCallback(uint32_t handle, const uint8_t dev_type,  LivoxLidarEtherne
   }
   (void)dev_type;
   (void)client_data;
-  PrintImuData(handle, data);
+  // PrintImuData(handle, data);
 }
 
 void WorkModeCallback(livox_status status, uint32_t handle,LivoxLidarAsyncControlResponse *response, void *client_data) {
